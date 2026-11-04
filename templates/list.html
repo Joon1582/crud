@@ -10,8 +10,11 @@
     
     {% for post in posts %}
     <!-- <li>{{ post['title'] }}</li> -->
-    <li>{{ post.title }}</li>
-    {%endfor%}
+    <li>
+        {{ post.title }}
+        <a href="/post/{{ post.id }}">detail</a>
+    </li>
+    {% endfor %}
 
 </body>
 </html>

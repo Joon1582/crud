@@ -101,5 +101,11 @@ def post_update(post_id: int, title: str = Form(), content: str = Form()):
 
         return RedirectResponse(f'/posts/{post_id}', status_code=303)
 
+@app.post('/posts/{post_id}/delete')
+def post_delete(post_id: int):
+     posts.pop(post_id)
+
+     return RedirectResponse('/posts', status_code=303)
+
 
       

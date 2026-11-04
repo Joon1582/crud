@@ -5,6 +5,13 @@ app = FastAPI()
 # directory 라는 설정은 앞으로 html 파일을 찾을 위치
 templates = Jinja2Templates(directory='templates')
 
+
+#가상의 데이터
+posts = {
+    1: {"id": 1, "title": "hi", "content": "반갑습니다."},
+    2: {"id": 2, "title": "배고파요", "content": "뭐먹지"},
+}
+
 @app.get('/')
 def home():
     return{'hello': 'world'}
@@ -25,3 +32,17 @@ def pong(count: int):
 @app.post('/pong')
 def pong_post(count: int = Form()):
     return {'result': count ** 2}
+
+#전체 게시물 출력
+@app.get('/posts')
+def post_list(request: Request):
+    return templates. TemplateResponse(
+        request=request,
+        name= 'list.html',
+        context={'posts': list(posts.values())}
+    )
+
+#하나의 게시물 출력
+@app.get('/posts/{post_id}')
+def post_detail():
+    pass
